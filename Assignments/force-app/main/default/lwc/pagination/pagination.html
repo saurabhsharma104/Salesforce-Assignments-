@@ -1,0 +1,27 @@
+<template>
+    <lightning-layout class="slds-align_absolute-center" style="height:3rem">
+        <!-- Create Previous Button for jumping previous button -->
+        <lightning-layout-item>
+            <lightning-button 
+            label="Previous" 
+            icon-name="utility:left" 
+            onclick={previousHandler}
+            disabled={disablePrevious}
+            class="slds-m-left_x-small"></lightning-button>
+        </lightning-layout-item>
+        <!-- which page number is visible currently  -->
+        <lightning-layout-item class="slds-m-around_x-large" >
+            Displaying {curentPage} of {TotalPages} pages...
+        </lightning-layout-item>
+        <!-- next button -->
+        <lightning-layout-item>
+            <lightning-button 
+            label="Next" 
+            icon-name="utility:right" 
+            icon-position="right" 
+            onclick={nextHandler}
+            disabled={disableNext}
+            class="slds-m-left_x-small"></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

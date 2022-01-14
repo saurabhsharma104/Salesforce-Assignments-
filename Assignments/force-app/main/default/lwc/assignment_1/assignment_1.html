@@ -1,0 +1,49 @@
+<template>
+    <lightning-card title="Display All Accounts With Pagenation" icon-name="custom:custom63"> 
+
+        <div class="slds-align_absolute-center">
+            <!-- creating input ( type search) for searching account  -->
+            <div>
+                <lightning-input type="search" onchange={handleKeyChange} class="slds-m-bottom_small" label="Search"
+                    value={searchKey}></lightning-input>
+            </div>
+            <!-- display a new button for createing a account record... -->
+            <div>
+                <lightning-button variant="brand" label="New" onclick={handleClick} class="slds-var-m-around_small"></lightning-button>
+            </div>
+            <!-- display a refresh button for refreshing current component... -->
+            <div>
+                <lightning-button label="Refresh" onclick={refreshData}></lightning-button>
+            </div>
+        </div>
+ 
+        <!-- create a account record  -->
+        <div if:true={shownewlayout} class="slds-m-around_medium">
+            <lightning-record-form
+                object-api-name={accountObject}
+                fields={myFields}
+                onsuccess={handleAccountCreated}>
+            </lightning-record-form>
+        </div>
+
+        <!-- Display all account list in the lightning data table...  -->
+        <div class="slds-m-around_medium">
+            <lightning-datatable
+                    key-field="Id"
+                    draft-values={draftValues}
+                    data={visibleAccounts}
+                    row-number-offset={rowOffset}
+                    columns={columns}
+                    hide-checkbox-column="true"
+                    onrowaction={handleRowAction}
+                    onsave={handleSave}
+                    >
+            </lightning-datatable>
+        </div>
+
+        <!-- Add a child pagination lightning components... -->
+        <div>
+            <c-pagination records={accountList} onupdate = {updateAccountHandler}></c-pagination>
+        </div>
+    </lightning-card>
+</template>
